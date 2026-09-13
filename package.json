@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "description": "灵狮 LingShi 产品官网",
+  "packageManager": "pnpm@12.4.1",
   "scripts": {
     "dev": "vitepress dev docs",
     "build": "vitepress build docs",
