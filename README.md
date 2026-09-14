@@ -4,11 +4,13 @@
 
 ## 本地开发
 
+环境要求:Node.js ≥ 24(自带 npm)。
+
 ```bash
-pnpm install
-pnpm dev        # http://localhost:5173
-pnpm build      # 构建产物在 docs/.vitepress/dist
-pnpm preview
+npm install
+npm run dev        # http://localhost:5173
+npm run build      # 构建产物在 docs/.vitepress/dist
+npm run preview
 ```
 
 ## 发布
