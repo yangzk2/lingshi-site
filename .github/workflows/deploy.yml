@@ -33,3 +33,15 @@ jobs:
           path: docs/.vitepress/dist
       - id: deployment
         uses: actions/deploy-pages@v4
+      - name: 失败诊断(输出到 summary, 便于远程排查)
+        if: failure()
+        run: |
+          {
+            echo "## 失败诊断"
+            echo "- pnpm: $(pnpm --version 2>&1)"
+            echo "- node: $(node --version 2>&1)"
+            echo "- 锁文件版本: $(head -1 pnpm-lock.yaml 2>&1)"
+            echo "- 构建产物 dist: $(ls docs/.vitepress/dist/index.html >/dev/null 2>&1 && echo 存在 || echo 不存在)"
+            echo "- Pages 状态: $(curl -s -o /dev/null -w '%{http_code}' https://yangzk2.github.io/lingshi-site/ 2>/dev/null)"
+            echo "- 失败发生于上方某个红叉步骤, 请对照"
+          } >> "${GITHUB_STEP_SUMMARY}"
